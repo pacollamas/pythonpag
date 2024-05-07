@@ -3,6 +3,7 @@
 import logging
 from flask import Flask, request, redirect, abort, render_template, url_for, flash
 
+import CRUD, CRUD.cliente as client
 app = Flask(__name__)
 
 # Defineix el nivell per defecte de log
@@ -29,13 +30,14 @@ def hello2():
     param = request.args.get('alias')
     return render_template('hello.html', alias=param)
 
-@app.route('/resource/create', methods=["GET", "POST"])
+@app.route('/clients/create', methods=["GET", "POST"])
 def resource_create():
     if request.method == 'GET':
         # Show form
-        return render_template('resource/create.html')
+        return render_template('clients/create.html')
     elif request.method == 'POST':
         # Get POST data
+        
         data = request.form
         # TODO Save data (database insert)
         saved_id = 1234
@@ -45,9 +47,10 @@ def resource_create():
         # Not found response
         abort(404)
 
-@app.route('/resource/read/<int:id>')
+@app.route('/clients/read/<int:id>')
 def resource_read(id):
     # TODO Get data (database select)
+    
     data = {
         'id': 1234,
         'field1': 'Value1',
@@ -57,22 +60,15 @@ def resource_read(id):
     # Show data
     return render_template('resource/read.html',resource=data)
 
-@app.route('/resource/list')
+@app.route('/clients/list')
 def resource_list():
     # TODO Get data (database select)
-    data = [{
-        'id': 1234,
-        'field1': 'Value A1',
-        'field2': 'Value A2',
-        'field3': 'Value A3'
-    }, {
-        'id': 5678,
-        'field1': 'Value B1',
-        'field2': 'Value B2',
-        'field3': 'Value B3'
-    }]
+    CRUD.connectar()
+    results= client.list()
+    CRUD.desconnectar()
+   
     # Show data
-    return render_template('resource/list.html',results=data)
+    return render_template('clients/list.html', results=results)
 
 @app.route("/contacte", methods = ["GET", "POST"])
 def contacte():

@@ -8,18 +8,22 @@
 <body>
     <div class="container">
         <h1>Create resource</h1>
-        <form method="POST" action="/resource/create">
+        <form method="POST" action="/clients/create">
             <div class="form-row">
-                <label for="field1">Field 1:</label>
-                <input type="text" name="field1" required></input>    
-            </div>
-            <div class="form-row">
-                <label for="field2">Field 2:</label>
+                <label for="Nom">Nom:</label>
                 <input type="text" name="field2" required></input>    
             </div>
             <div class="form-row">
-                <label for="field3">Field 3:</label>
-                <input type="text" name="field3" placeholder="(optional)"></input>
+                <label for="Cognom1">Cognom1:</label>
+                <input type="text" name="Cognom1" required></input>
+            </div>
+            <div class="form-row">
+                <label for="Cognom2">Cognom2:</label>
+                <input type="text" name="Cognom2" required></input>
+            </div>
+            <div class="form-row">
+                <label for="telefon">telefon:</label>
+                <input type="text" name="telefon" required></input>
             </div>
             <div>
                 <button type="submit">Create</button>
