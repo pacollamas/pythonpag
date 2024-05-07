@@ -1,3 +1,12 @@
+
+
+
+
+# #################################################PPAPAP
+
+
+
+
 # 1asixdaw-m03m04-flask
 Projecte web de M3 i M4 amb el microframework Flask (Python).
 
