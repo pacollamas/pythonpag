@@ -15,12 +15,12 @@ def list():
     mycursor.close()
     return myresult
 
-# def create():
-#     mycursor = c.mydb.cursor()
-#     sql = """INSERT INTO dades_web (id, nom, cognom1, cognom2) 
-#         VALUES (%s, %s, %s, %s)"""
-#     mycursor.execute(sql, [url, categoria, data])
-#     c.mydb.commit()
-#     count = mycursor.rowcount
-#     mycursor.close()
-#     return count
+def create(nom, cognom1,cognom2, telefon):
+    mycursor = c.mydb.cursor()
+    sql = """INSERT INTO client (nom, cognom1, cognom2,telefon) 
+        VALUES (%s, %s, %s, %s)"""
+    mycursor.execute(sql, [nom, cognom1,cognom2, telefon])
+    c.mydb.commit()
+    count = mycursor.rowcount
+    mycursor.close()
+    return count

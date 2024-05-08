@@ -37,12 +37,19 @@ def resource_create():
         return render_template('clients/create.html')
     elif request.method == 'POST':
         # Get POST data
-        
         data = request.form
-        # TODO Save data (database insert)
+        nom = data['nom']
+        cognom1 = data['Cognom1']
+        cognom2 = data['Cognom2']
+        telefon = data['telefon']
+        CRUD.connectar()
+        client.create(nom,cognom1,cognom2,telefon)
+        CRUD.desconnectar()
         saved_id = 1234
+        # TODO Save data (database insert)
+        
         # Redirect to show page
-        return redirect(url_for('resource_read', id=saved_id))
+        return redirect(url_for('clients/read.html', id=saved_id))
     else:
         # Not found response
         abort(404)
