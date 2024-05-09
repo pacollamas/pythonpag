@@ -19,9 +19,10 @@
                 </tr>
             </thead>
             <tbody>
-                {% for result in myresult %}
+                {% for result in dades %}
                 <tr>
                     <td>{{ result['id'] }}</td>
+                    <td>{{ result['nom'] }}</td>
                     <td>{{ result['cognom1'] }}</td>
                     <td>{{ result['cognom2'] }}</td>
                     <td>{{ result['telefon'] }}</td>

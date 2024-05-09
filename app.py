@@ -45,11 +45,11 @@ def resource_create():
         CRUD.connectar()
         client.create(nom,cognom1,cognom2,telefon)
         CRUD.desconnectar()
-        saved_id = 1234
+        # saved_id = 1234
         # TODO Save data (database insert)
         
         # Redirect to show page
-        return redirect(url_for('clients/read.html', id=saved_id))
+        # return redirect(url_for('clients/read.html', id=saved_id))
     else:
         # Not found response
         abort(404)
@@ -57,25 +57,20 @@ def resource_create():
 @app.route('/clients/read/<int:id>')
 def resource_read(id):
     # TODO Get data (database select)
-    
-    data = {
-        'id': 1234,
-        'field1': 'Value1',
-        'field2': 'Value2',
-        'field3': 'Value3'
-    }
+    CRUD.connectar()
+    dades=client.list()
+    CRUD.desconnectar()
     # Show data
-    return render_template('resource/read.html',resource=data)
+    return render_template('clients/read.html',dades=dades)
 
 @app.route('/clients/list')
 def resource_list():
     # TODO Get data (database select)
     CRUD.connectar()
-    results= client.list()
+    dades=client.list()
     CRUD.desconnectar()
-   
     # Show data
-    return render_template('clients/list.html', results=results)
+    return render_template('clients/list.html',dades=dades )
 
 @app.route("/contacte", methods = ["GET", "POST"])
 def contacte():

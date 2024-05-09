@@ -1,19 +1,22 @@
 import CRUD as c
 #read
 def read():
-    mycursor = c.mydb.cursor()
-    mycursor.execute("SELECT * FROM clients WHERE id= ")
+    dades=[]
+    mycursor = c.mydb.cursor(dictionary=True)
+    mycursor.execute("SELECT * FROM clients WHERE id= result['id']")
     myresult = mycursor.fetchall()
     mycursor.close()
-    return myresult
+    return dades
 
 
 def list():
-    mycursor = c.mydb.cursor()
+    dades=[]
+    mycursor = c.mydb.cursor(dictionary=True)
     mycursor.execute("SELECT * FROM client")
-    myresult = mycursor.fetchall()
+    dades = mycursor.fetchall()
     mycursor.close()
-    return myresult
+    return dades
+
 
 def create(nom, cognom1,cognom2, telefon):
     mycursor = c.mydb.cursor()
