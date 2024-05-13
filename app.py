@@ -43,25 +43,27 @@ def resource_create():
         cognom2 = data['Cognom2']
         telefon = data['telefon']
         CRUD.connectar()
-        client.create(nom,cognom1,cognom2,telefon)
+        id=client.create(nom,cognom1,cognom2,telefon)
         CRUD.desconnectar()
-        # saved_id = 1234
+        id_saved=id
         # TODO Save data (database insert)
         
         # Redirect to show page
-        # return redirect(url_for('clients/read.html', id=saved_id))
+        return redirect(url_for('clients/read.html', id_saved=id_saved))
     else:
         # Not found response
         abort(404)
 
 @app.route('/clients/read/<int:id>')
-def resource_read(id):
+def resource_read():
     # TODO Get data (database select)
     CRUD.connectar()
     dades=client.list()
     CRUD.desconnectar()
     # Show data
     return render_template('clients/read.html',dades=dades)
+
+
 
 @app.route('/clients/list')
 def resource_list():
@@ -72,6 +74,29 @@ def resource_list():
     # Show data
     return render_template('clients/list.html',dades=dades )
 
+
+@app.route('/clients/update', methods=["GET", "POST"])
+def resource_update():
+    if request.method == 'GET':
+        # Show form
+        return render_template('clients/create.html')
+    elif request.method == 'POST':
+        # Get POST data
+        data = request.form
+        nom = data['nom']
+        cognom1 = data['Cognom1']
+        cognom2 = data['Cognom2']
+        telefon = data['telefon']
+        CRUD.connectar()
+        id=client.create(nom,cognom1,cognom2,telefon)
+        CRUD.desconnectar()
+       
+        # TODO Save data (database insert)
+        # Redirect to show page
+        return redirect(url_for('clients/read.html'))
+    else:
+        # Not found response
+        abort(404)
 @app.route("/contacte", methods = ["GET", "POST"])
 def contacte():
     if request.method == 'GET':
@@ -88,6 +113,11 @@ def contacte():
         # Flash message to inform the user
         flash(f"En breu rebreu resposta a {email}")
         return redirect(url_for('thanks'))
+
+
+
+
+
 
 @app.route("/thanks-for-your-comments") # default is GET
 def thanks():
