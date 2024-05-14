@@ -39,26 +39,26 @@ def resource_create():
         # Get POST data
         data = request.form
         nom = data['nom']
-        cognom1 = data['Cognom1']
-        cognom2 = data['Cognom2']
+        cognom1 = data['cognom1']
+        cognom2 = data['cognom2']
         telefon = data['telefon']
         CRUD.connectar()
-        id=client.create(nom,cognom1,cognom2,telefon)
+        id_saved =client.create(nom,cognom1,cognom2,telefon)
         CRUD.desconnectar()
-        id_saved=id
+       
         # TODO Save data (database insert)
         
         # Redirect to show page
-        return redirect(url_for('clients/read.html', id_saved=id_saved))
+        return redirect(url_for('resource_read', id=id_saved))
     else:
         # Not found response
         abort(404)
 
 @app.route('/clients/read/<int:id>')
-def resource_read():
+def resource_read(id):
     # TODO Get data (database select)
     CRUD.connectar()
-    dades=client.list()
+    dades=client.read(id)
     CRUD.desconnectar()
     # Show data
     return render_template('clients/read.html',dades=dades)
@@ -75,25 +75,28 @@ def resource_list():
     return render_template('clients/list.html',dades=dades )
 
 
-@app.route('/clients/update', methods=["GET", "POST"])
-def resource_update():
+@app.route('/clients/update/<int:id>', methods=["GET", "POST"])
+def resource_update(id):
     if request.method == 'GET':
-        # Show form
-        return render_template('clients/create.html')
+        CRUD.connectar()
+        dades=client.read(id)
+        CRUD.desconnectar()
+        return render_template('clients/update.html', dades=dades)
+    
     elif request.method == 'POST':
         # Get POST data
         data = request.form
         nom = data['nom']
-        cognom1 = data['Cognom1']
-        cognom2 = data['Cognom2']
+        cognom1 = data['cognom1']
+        cognom2 = data['cognom2']
         telefon = data['telefon']
         CRUD.connectar()
-        id=client.create(nom,cognom1,cognom2,telefon)
+        id_saved = client.update(id, nom, cognom1, cognom2, telefon)
         CRUD.desconnectar()
        
         # TODO Save data (database insert)
         # Redirect to show page
-        return redirect(url_for('clients/read.html'))
+        return redirect(url_for('resource_list', id=id_saved))
     else:
         # Not found response
         abort(404)

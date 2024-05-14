@@ -7,7 +7,33 @@
 
 <body>
     <div class="container">
-        TODO
+        <h1>Update resource</h1>
+        {% for da in dades %}
+        <form method="POST" action="/clients/update/{{ da['id'] }}">
+        {% endfor %}
+            {% for data in dades %}
+                <div class="form-row">
+                    <label for="Nom">Nom:</label>
+                    <input type="text" name="nom" value="{{ data['nom'] }}" required></input>    
+                </div>
+                <div class="form-row">
+                    <label for="Cognom1">Cognom1:</label>
+                    <input type="text" name="cognom1" value="{{ data['cognom1'] }}" required></input>
+                </div>
+                <div class="form-row">
+                    <label for="Cognom2">Cognom2:</label>
+                    <input type="text" name="cognom2" value="{{ data['cognom2'] }}" required></input>
+                </div>
+                <div class="form-row">
+                    <label for="telefon">telefon:</label>
+                    <input type="text" name="telefon" value="{{ data['telefon'] }}" required></input>
+                </div>
+                <div>
+                    <button type="submit">Update</button>
+                    <button type="reset">Reset</button>
+                </div>
+            {% endfor %}
+        </form>
     </div>
 </body>
 </html>

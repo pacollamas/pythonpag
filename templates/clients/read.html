@@ -6,31 +6,32 @@
 </head>
 
 <body>
-    {{count}}
-    <!-- <div class="container">
-        <h1>Resource {{ dades['id'] }}</h1>
+    <div class="container">
+        {% for data in dades %}
+        <h1>Resource {{ data['id'] }}</h1>
         <table>
             <tr>
                 <td>id</td>
-                <td>{{ dades['id'] }}</td>
+                <td>{{ data['id'] }}</td>
             </tr>
             <tr>
                 <td>nom</td>
-                <td>{{ dades['nom'] }}</td>
+                <td>{{ data['nom'] }}</td>
             </tr>
             <tr>
                 <td>Cognom1</td>
-                <td>{{ dades['cognom1'] }}</td>
+                <td>{{ data['cognom1'] }}</td>
             </tr>
             <tr>
                 <td>Cognom2</td>
-                <td>{{ dades['cognom2'] }}</td>
+                <td>{{ data['cognom2'] }}</td>
             </tr>
             <tr>
                 <td>telefon</td>
-                <td>{{ dades['telefon'] }}</td>
+                <td>{{ data['telefon'] }}</td>
             </tr>
         </table>
-    </div> -->
+        {% endfor %}
+    </div>
 </body>
 </html>
