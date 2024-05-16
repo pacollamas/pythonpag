@@ -28,7 +28,7 @@
                     <td>{{ result['telefon'] }}</td>
                     <td><a class="action" href="/clients/read/{{ result['id'] }}" title="Veure">👁️</a></td>
                     <td><a class="action" href="/clients/update/{{ result['id'] }}" title="Editar">📝</a></td>
-                    <td><a class="action" href="/clients/read/{{ result['id'] }}" title="Eliminar">❌</a></td>
+                    <td><a class="action" href="/clients/delete/{{ result['id'] }}" title="Eliminar">❌</a></td>
                 </tr>
                 {% endfor %}    
             </tbody>

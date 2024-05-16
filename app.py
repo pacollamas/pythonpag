@@ -100,6 +100,30 @@ def resource_update(id):
     else:
         # Not found response
         abort(404)
+
+@app.route('/clients/delete/<int:id>', methods=["GET", "POST"])
+def resource_delete(id):
+    if request.method == 'GET':
+        CRUD.connectar()
+        dades=client.read(id)
+        CRUD.desconnectar()
+        return render_template('clients/delete.html', dades=dades)
+    
+    elif request.method == 'POST':
+        # Get POST data
+        CRUD.connectar()
+        client.delete(id)
+        CRUD.desconnectar()
+       
+        # TODO Save data (database insert)
+        # Redirect to show page
+        return redirect(url_for('resource_list'))
+    else:
+        # Not found response
+        abort(404)
+
+
+
 @app.route("/contacte", methods = ["GET", "POST"])
 def contacte():
     if request.method == 'GET':

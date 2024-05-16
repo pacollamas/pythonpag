@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Resource - Delete</title>
+    <title>Delete Resource</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
-
 <body>
     <div class="container">
-        TODO
+        {% for data in dades %}
+        <h1>Delete Resource {{ data['id'] }}</h1>
+        <p>Are you sure you want to delete the following resource?</p>
+        <table>
+            <tr>
+                <td>Nom:</td>
+                <td>{{ data['nom'] }}</td>
+            </tr>
+            <tr>
+                <td>Cognom1:</td>
+                <td>{{ data['cognom1'] }}</td>
+            </tr>
+            <tr>
+                <td>Cognom2:</td>
+                <td>{{ data['cognom2'] }}</td>
+            </tr>
+            <tr>
+                <td>Telefon:</td>
+                <td>{{ data['telefon'] }}</td>
+            </tr>
+        </table>
+        {% endfor %}
+        {% for da in dades %}
+        <form method="POST" action="/clients/delete/{{ da['id'] }}">
+            <button type="submit">Delete</button>
+            <a href="/clients/list">Cancel</a>
+        </form>
+        {% endfor %}
     </div>
 </body>
 </html>

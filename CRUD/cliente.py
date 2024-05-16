@@ -8,6 +8,14 @@ def read(id):
     mycursor.close()
     return dades
 
+def delete(id):
+    mycursor = c.mydb.cursor()
+    mycursor.execute("DELETE FROM client WHERE id = %s", (id,))
+    mycursor.fetchall()
+    c.mydb.commit()
+    mycursor.close()
+    
+
 
 
 # def read(id=None):
